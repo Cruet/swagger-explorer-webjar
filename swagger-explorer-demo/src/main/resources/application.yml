@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: swagger-explorer-demo
+server:
+  context-path: /swagger-explorer-demo

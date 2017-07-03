@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Swagger Docs</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<!--style type="text/css"></style-->
+
+<link
+	href="webjars/${project.artifactId}/${project.version}/css/index.css"
+	rel="stylesheet" />
+<link
+	href='webjars/${project.artifactId}/${project.version}/css/standalone.css'
+	rel='stylesheet' />
+<link
+	href='webjars/${project.artifactId}/${project.version}/css/api-explorer.css'
+	rel='stylesheet' type='text/css' />
+<link
+	href='webjars/${project.artifactId}/${project.version}/css/screen.css'
+	media='screen' rel='stylesheet' type='text/css' />
+
+<script
+	src='webjars/${project.artifactId}/${project.version}/lib/jquery-1.8.0.min.js'
+	type='text/javascript'></script>
+<script
+	src='webjars/${project.artifactId}/${project.version}/lib/jquery.slideto.min.js'
+	type='text/javascript'></script>
+<script
+	src='webjars/${project.artifactId}/${project.version}/lib/jquery.wiggle.min.js'
+	type='text/javascript'></script>
+<script
+	src='webjars/${project.artifactId}/${project.version}/lib/jquery.ba-bbq.min.js'
+	type='text/javascript'></script>
+<script
+	src='webjars/${project.artifactId}/${project.version}/lib/handlebars-2.0.0.js'
+	type='text/javascript'></script>
+<script
+	src='webjars/${project.artifactId}/${project.version}/lib/underscore-min.js'
+	type='text/javascript'></script>
+<script
+	src='webjars/${project.artifactId}/${project.version}/lib/backbone-min.js'
+	type='text/javascript'></script>
+<script
+	src='webjars/${project.artifactId}/${project.version}/swagger-ui.js'
+	type='text/javascript'></script>
+<script
+	src='webjars/${project.artifactId}/${project.version}/lib/jsoneditor.js'
+	type='text/javascript'></script>
+<script
+	src='webjars/${project.artifactId}/${project.version}/lib/highlight.7.3.pack.js'
+	type='text/javascript'></script>
+<script
+	src='webjars/${project.artifactId}/${project.version}/lib/marked.js'
+	type='text/javascript'></script>
+<script
+	src='webjars/${project.artifactId}/${project.version}/lib/swagger-oauth.js'
+	type='text/javascript'></script>
+<script
+	src='webjars/${project.artifactId}/${project.version}/lib/bootstrap.min.js'
+	type='text/javascript'></script>
+
+<script type="text/javascript">
+        jQuery.browser = jQuery.browser || {};
+        (function () {
+            jQuery.browser.msie = jQuery.browser.msie || false;
+            jQuery.browser.version = jQuery.browser.version || 0;
+            if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                jQuery.browser.msie = true;
+                jQuery.browser.version = RegExp.$1;
+            }
+        })();
+    </script>
+
+<script
+	src='webjars/${project.artifactId}/${project.version}/springfox.js'
+	type='text/javascript'></script>
+
+<script type="text/javascript">
+
+        $(function () {
+
+            $(window).scroll(function () {
+                var sticky = $(".sticky-nav");
+
+                i(sticky);
+                r(sticky);
+
+                function n() {
+                    return window.matchMedia("(min-width: 992px)").matches
+                }
+
+                function e() {
+                    n() ? sticky.parents(".sticky-nav-placeholder").removeAttr("style") : sticky.parents(".sticky-nav-placeholder").css("min-height", sticky.outerHeight())
+                }
+
+                function i(n) {
+                    n.hasClass("fixed") || (navOffset = n.offset().top);
+                    e();
+                    $(window).scrollTop() > navOffset ? $(".modal.in").length || n.addClass("fixed") : n.removeClass("fixed")
+                }
+
+                function r(e) {
+                    function i() {
+                        var i = $(window).scrollTop(), r = e.parents(".sticky-nav");
+                        return r.hasClass("fixed") && !n() && (i = i + r.outerHeight() + 40), i
+                    }
+
+                    function r(e) {
+                        var t = o.next("[data-endpoint]"), n = o.prev("[data-endpoint]");
+                        return "next" === e ? t.length ? t : o.parent().next().find("[data-endpoint]").first() : "prev" === e ? n.length ? n : o.parent().prev().find("[data-endpoint]").last() : []
+                    }
+
+                    var nav = e.find("[data-navigator]");
+                    if (nav.find("[data-endpoint][data-selected]").length) {
+                        var o = nav.find("[data-endpoint][data-selected]"),
+                            a = $("#" + o.attr("data-endpoint")),
+                            s = a.offset().top,
+                            l = (s + a.outerHeight(), r("next")),
+                            u = r("prev");
+                        if (l.length) {
+                            {
+                                var d = $("#" + l.attr("data-endpoint")), f = d.offset().top;
+                                f + d.outerHeight()
+                            }
+                            i() >= f && c(l)
+                        }
+                        if (u.length) {
+                            var p = $("#" + u.attr("data-endpoint")),
+                                g = u.offset().top;
+                            v = (g + p.outerHeight(), 100);
+                            i() < s - v && c(u)
+                        }
+                    }
+                }
+
+                function s() {
+                    var e = $(".sticky-nav [data-navigator]"),
+                        n = e.find("[data-endpoint]").first();
+                    n.attr("data-selected", "");
+                    u.find("[data-selected-value]").html(n.text())
+                }
+
+                function c(e) {
+                    {
+                        var n = $(".sticky-nav [data-navigator]");
+                        $("#" + e.attr("data-endpoint"))
+                    }
+                    n.find("[data-resource]").removeClass("active");
+                    n.find("[data-selected]").removeAttr("data-selected");
+                    e.closest("[data-resource]").addClass("active");
+                    e.attr("data-selected", "");
+                    sticky.find("[data-selected-value]").html(e.text())
+                }
+            });
+
+        });
+    </script>
+
+<script type="text/javascript">
+        $(function () {
+            $("[data-toggle='tooltip']").tooltip();
+        });
+    </script>
+
+</head>
+
+<body class="page-docs" style="zoom: 1;">
+	<header class="site-header">
+		<nav role="navigation" class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" data-toggle="collapse"
+						data-target="#navbar-collapse" class="navbar-toggle">
+						<span class="sr-only">Toggle navigation</span><span
+							class="icon-bar"></span><span class="icon-bar"></span><span
+							class="icon-bar"></span>
+					</button>
+					<h1 class="navbar-brand" style="width: auto">
+						<a href="#"
+							style="background: none; display: flex; flex-direction: row; align-items: center; height: 50px; width: auto">
+							<span style="display: inline-block">Swagger Docs</span>
+						</a>
+					</h1>
+				</div>
+				<div id="navbar-collapse" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-left">
+						<li class="li-why"><a href="#"
+							style="font-size: 25px; padding-left: 0px">&nbsp;</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<section class="content">
+		<div id="api2-explorer">
+			<div class="swagger-section page-docs" style="zoom: 1">
+				<div class="main-section">
+					<div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
+

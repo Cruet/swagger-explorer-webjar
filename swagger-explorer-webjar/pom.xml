@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.github.cruet</groupId>
+	<artifactId>swagger-explorer-webjar</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>swagger-explorer-webjar</name>
+	<description>This is a wrapper repo for the jensoleg/swagger-ui</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<upstream.version>master</upstream.version>
+		<upstream.url>https://codeload.github.com/jensoleg/swagger-ui/zip/${upstream.version}</upstream.url>
+
+		<api-docs.url>/v2/api-docs</api-docs.url>
+
+		<!-- Project specific settings -->
+
+		<src-folder.name>swagger-ui-${upstream.version}</src-folder.name>
+		<root.dest>${project.build.outputDirectory}</root.dest>
+		<destDir>${root.dest}/META-INF/resources/webjars/${project.artifactId}/${project.version}
+		</destDir>
+		<requirejs>
+			{
+			"paths": { "${project.artifactId}":
+			"${project.artifactId}/${project.version}" }
+			}
+		</requirejs>
+	</properties>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<echo message="download archive" />
+								<get src="${upstream.url}"
+									dest="${project.build.directory}/${project.artifactId}.zip" />
+								<echo message="unzip archive" />
+								<unzip src="${project.build.directory}/${project.artifactId}.zip"
+									dest="${project.build.directory}" />
+								<echo message="moving resources" />
+								<move todir="${destDir}">
+									<fileset dir="${project.build.directory}/${src-folder.name}/dist" />
+									<fileset dir="${root.dest}/js" />
+								</move>
+								<move todir="${root.dest}/META-INF/resources">
+									<fileset file="${root.dest}/index.html" />
+								</move>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.1</version>
+			</plugin>
+			<plugin>
+				<groupId>com.googlecode.todomap</groupId>
+				<artifactId>maven-jettygzip-plugin</artifactId>
+				<version>0.0.4</version>
+				<configuration>
+					<webappDirectory>target/classes</webappDirectory>
+					<outputDirectory>target/classes</outputDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>process</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

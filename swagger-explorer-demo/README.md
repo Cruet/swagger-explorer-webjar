@@ -26,6 +26,10 @@ To enable Swagger Explorer Ui just add [swagger-explorer-webjar](../swagger-expl
 		</dependency>
 ```
 
+Execute:
+```bash
+mvn spring-boot:run
+```
 
 To access ui, navigate to your root url:
 

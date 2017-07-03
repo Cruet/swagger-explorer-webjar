@@ -1,4 +1,4 @@
-## This project a WebJar wrapper for jensoleg/swagger-ui  to easy integration
+## This project a WebJar wrapper for [jensoleg/swagger-ui](https://github.com/jensoleg/swagger-ui)  to easy integration
 
 Build cruet/swagger-explorer-webjar 
 
